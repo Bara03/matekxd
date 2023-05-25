@@ -39,8 +39,15 @@ class matrix_utils():
             except ValueError:
                 print(f"{utils.colorise_text('red')}Nincs ilyen mátrix. Próbáld meg újra!{utils.colorise_text()}")
 class matrix_solution():
-    def transposition(matrixes:dict,chosen_matrix_char:str)->dict:
-        print(matrixes)
+    def transposition(matrixes: dict, chosen_matrix_char) -> dict:
+        if chosen_matrix_char == -1:
+            for k, matrix in matrixes.items():
+                matrixes[k] = [[matrix[j][i] for j in range(len(matrix))] for i in range(len(matrix[0]))]
+            return matrixes
+        else:
+            matrix = matrixes[chosen_matrix_char]
+            matrixes[chosen_matrix_char] = [[matrix[j][i] for j in range(len(matrix))] for i in range(len(matrix[0]))]
+            return matrixes
 def start_slove_matrix_task():
     matrixes = {}
     current_matrix_name = 'Z'
@@ -58,5 +65,4 @@ def start_slove_matrix_task():
     matrix_keys = ""
     for v in matrixes.keys():
         matrix_keys += v+", "
-    tasks[chosen_type](matrixes,matrix_utils.get_which_to_slove_single(f"Add meg melyik mátrixot szeretnéd transzponálni! \n\t[{matrix_keys}-]Betű vagy - ha az összeset: ",matrixes))
-
+    print(tasks[chosen_type](matrixes,matrix_utils.get_which_to_slove_single(f"Add meg melyik mátrixot szeretnéd transzponálni! \n\t[{matrix_keys}-]Betű vagy - ha az összeset: ",matrixes)))
