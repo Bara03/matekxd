@@ -48,6 +48,26 @@ class matrix_solution():
             matrix = matrixes[chosen_matrix_char]
             matrixes[chosen_matrix_char] = [[matrix[j][i] for j in range(len(matrix))] for i in range(len(matrix[0]))]
             return matrixes
+
+    def gauss_elimination(matrix:list[list])->list[list]:
+        rows = len(matrix)
+
+        # Forward elimination
+        for i in range(rows - 1):
+            print(matrix[i][i])
+            if matrix[i][i] == 0:
+                for j in range(i + 1, rows):
+                    if matrix[j][i] != 0:
+                        matrix[i], matrix[j] = matrix[j], matrix[i]
+                        break
+            if matrix[i][i] == 0:
+                return None
+            for j in range(i + 1, rows):
+                factor = matrix[j][i] / matrix[i][i]
+                for k in range(i, rows):
+                    matrix[j][k] -= factor * matrix[i][k]
+
+        return matrix
 def start_slove_matrix_task():
     matrixes = {}
     current_matrix_name = 'Z'
