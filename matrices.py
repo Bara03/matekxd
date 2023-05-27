@@ -51,8 +51,6 @@ class matrix_solution():
 
     def gauss_elimination(matrix:list[list])->list[list]:
         rows = len(matrix)
-
-        # Forward elimination
         for i in range(rows - 1):
             print(matrix[i][i])
             if matrix[i][i] == 0:
